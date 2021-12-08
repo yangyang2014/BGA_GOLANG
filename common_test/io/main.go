@@ -1,12 +1,14 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 )
 
 func main()  {
-	WriteOveride()
+	//WriteOveride()
+	ListSubFile()
 }
 
 //测试 写文件，覆盖写的问题
@@ -39,7 +41,34 @@ func WriteOveride() {
 
 
 // TODO 1 读目录下的文件（一级目录）
+func ListSubFile() {
+	f,err := os.Open("./")
+	if err != nil {
+		fmt.Println("open",err)
+	}
+	files , err :=	f.Readdir(-1)
+	if err != nil {
+		fmt.Println("readdir",err)
+	}
+	for i, file := range files {
+		fmt.Println(i,file.Name())
 
+	}
+
+}
 // TODO 2 将指定文件转为json
+type a struct {
+
+}
+func Convert2Json()  {
+	//方法1、获取到file后，直接用json.NewDecoder
+	v,_ := os.Open("./a.txt")
+	var a1 = &a{}
+	json.NewDecoder(v).Decode(&a1)
+	// 方法2 转为byte,再使用json.Unmarshl
+	//ioutil.ReadFile()
+	//b,e := ioutil.ReadAll()
+	//json.Unmarshal(b,)
+}
 
 // TODO 3 判断文件是否存在

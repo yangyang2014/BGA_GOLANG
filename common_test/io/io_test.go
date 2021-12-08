@@ -69,3 +69,5 @@ func Test_writeFile(t *testing.T) {
 	f.Write([]byte("1234"))
 	f.Write([]byte("abcd"))
 }
+
+func
